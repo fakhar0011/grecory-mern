@@ -1,5 +1,13 @@
-import React,{useState} from 'react'
-
+import React, { useState } from 'react'
+import { CiShare2 } from "react-icons/ci";
+import { TbShoppingCartCancel } from "react-icons/tb";
+import { CiSearch } from "react-icons/ci";
+import { PiIdentificationBadgeLight } from "react-icons/pi";
+import { CiMobile1 } from "react-icons/ci";
+import { PiBellLight } from "react-icons/pi";
+import { TbLayoutBottombarCollapse } from "react-icons/tb";
+import { CiClock2 } from "react-icons/ci";
+import { TbArrowZigZag } from "react-icons/tb";
 
 const Sectionthree = () => {
     const [activeStep, setActiveStep] = useState(1);
@@ -10,9 +18,12 @@ const Sectionthree = () => {
             title: "Create Lists",
             description: "Create custom shopping lists for different stores or occasions.",
             details: [
-                { icon: "🏪", text: "Organize by store" },
-                { icon: "👨‍👩‍👧", text: "Share with family" },
-                { icon: "⏰", text: "Set reminders" },
+                {
+                    icon: <TbShoppingCartCancel />
+                    , text: "Organize by store"
+                },
+                { icon: <CiShare2 />, text: "Share with family" },
+                { icon: <i class="fa-regular fa-bell"></i>, text: "Set reminders" },
             ],
         },
         {
@@ -20,9 +31,18 @@ const Sectionthree = () => {
             title: "Add Items",
             description: "Easily add items to your lists with quick search and suggestions.",
             details: [
-                { icon: "🛒", text: "Search for products" },
-                { icon: "✨", text: "Add favorites" },
-                { icon: "📋", text: "Categorize items" },
+                {
+                    icon: <CiSearch />
+                    , text: "Smart search"
+                },
+                {
+                    icon: <PiIdentificationBadgeLight />
+                    , text: "Auto-categorize"
+                },
+                {
+                    icon: <CiMobile1 />
+                    , text: "Voice input"
+                },
             ],
         },
         {
@@ -30,9 +50,18 @@ const Sectionthree = () => {
             title: "Track Prices",
             description: "Monitor price changes and find the best deals.",
             details: [
-                { icon: "📈", text: "Track discounts" },
-                { icon: "🔔", text: "Receive alerts" },
-                { icon: "📉", text: "Compare prices" },
+                {
+                    icon: <PiBellLight />
+                    , text: "Price alerts"
+                },
+                {
+                    icon: <TbLayoutBottombarCollapse />
+                    , text: "Compare stores"
+                },
+                {
+                    icon: <PiIdentificationBadgeLight />
+                    , text: "Deal finder"
+                },
             ],
         },
         {
@@ -40,9 +69,15 @@ const Sectionthree = () => {
             title: "Save Money",
             description: "Use insights to save on your grocery shopping.",
             details: [
-                { icon: "💰", text: "Track spending" },
-                { icon: "📊", text: "Budget insights" },
-                { icon: "🛍️", text: "Find bulk deals" },
+                {
+                    icon: <CiClock2 />
+                    , text: "Track savings"
+                },
+                {
+                    icon: <TbArrowZigZag />
+                    , text: "Spending insights"
+                },
+                { icon: <PiBellLight />, text: "Budget alerts" },
             ],
         },
     ];
@@ -61,7 +96,7 @@ const Sectionthree = () => {
                             key={step.id}
                             onClick={() => setActiveStep(step.id)}
                             className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${activeStep === step.id
-                                ? "bg-green-50 border-l-4 border-green-500 text-green-800"
+                                ? "bg-green-50 border-l-4 border-emerald-500 text-green-800"
                                 : "bg-white text-gray-700 hover:bg-gray-100"
                                 }`}
                         >

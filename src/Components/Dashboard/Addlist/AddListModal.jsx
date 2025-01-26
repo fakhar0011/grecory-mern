@@ -18,15 +18,15 @@ const AddListModal = ({ closeModal }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white rounded-lg p-6 w-96 shadow-lg relative">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-4 sm:p-6">
+            <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md shadow-lg relative">
                 <button
                     className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
                     onClick={closeModal}
                 >
                     ✕
                 </button>
-                <h2 className="text-lg font-bold mb-4">Add New List</h2>
+                <h2 className="text-lg font-bold mb-4 text-center">Add New List</h2>
                 <div className="mb-4">
                     <label className="block text-sm font-medium mb-1">List Title</label>
                     <input
@@ -60,7 +60,7 @@ const AddListModal = ({ closeModal }) => {
                     {items.length === 0 ? (
                         <p className="text-gray-500 text-sm">No items added yet</p>
                     ) : (
-                        <ul className="list-disc list-inside">
+                        <ul className="list-disc list-inside text-sm">
                             {items.map((item, index) => (
                                 <li key={index}>{item}</li>
                             ))}
@@ -70,8 +70,8 @@ const AddListModal = ({ closeModal }) => {
                 <button
                     onClick={createList}
                     className={`w-full px-4 py-2 rounded ${listTitle && items.length > 0
-                            ? "bg-green-500 text-white hover:bg-green-600"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        ? "bg-green-500 text-white hover:bg-green-600"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
                     disabled={!listTitle || items.length === 0}
                 >

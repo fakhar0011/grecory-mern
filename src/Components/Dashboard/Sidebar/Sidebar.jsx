@@ -18,8 +18,11 @@ const Sidebar = ({ categories, setCategories, setSelectedCategory }) => {
   };
 
   return (
-    <div className="w-64 bg-white shadow-lg p-4">
-      <h3 className="text-lg font-bold mb-4">Categories</h3>
+    <div className="w-full sm:w-64 bg-white shadow-lg p-4 flex flex-col">
+      {/* Categories Header */}
+      <h3 className="text-lg font-bold mb-4 text-center sm:text-left">Categories</h3>
+
+      {/* Add Category Section */}
       {isAddingCategory && (
         <div className="mb-4 bg-gray-100 p-2 rounded-lg">
           <input
@@ -27,36 +30,40 @@ const Sidebar = ({ categories, setCategories, setSelectedCategory }) => {
             placeholder="New Category"
             value={newCategory}
             onChange={(e) => setNewCategory(e.target.value)}
-            className="w-full px-2 py-1 border rounded"
+            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           <button
             onClick={addCategory}
-            className="w-full mt-2 bg-green-500 text-white py-1 rounded"
+            className="w-full mt-2 bg-green-500 text-white py-2 rounded-lg text-sm hover:bg-green-600"
           >
             Add
           </button>
         </div>
       )}
+
+      {/* Toggle Add Category Button */}
       <button
         onClick={() => setIsAddingCategory(!isAddingCategory)}
-        className="bg-green-500 text-white py-1 px-2 rounded mb-4 w-full"
+        className="bg-green-500 text-white py-2 px-4 rounded-lg mb-4 text-sm hover:bg-green-600 w-full"
       >
         {isAddingCategory ? "Cancel" : "Add Category"}
       </button>
-      <ul>
+
+      {/* Categories List */}
+      <ul className="space-y-2">
         {categories.map((category, index) => (
           <li
             key={index}
-            className="flex justify-between items-center mb-2 cursor-pointer"
+            className="flex justify-between items-center bg-gray-50 p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
             onClick={() => setSelectedCategory(category)}
           >
-            <span className="capitalize">{category}</span>
+            <span className="capitalize text-sm sm:text-base">{category}</span>
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 removeCategory(category);
               }}
-              className="text-red-500"
+              className="text-red-500 text-sm sm:text-base"
             >
               ✕
             </button>

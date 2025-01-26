@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import Sidebar from "../Sidebar/Sidebar.jsx"
-import Header from "../Header/Header.jsx"
-import Maincontent from "../Maincontent/Maincontent.jsx"
-import AddListModal from '../Addlist/AddListModal.jsx'
+import React, { useState } from 'react';
+import Sidebar from "../Sidebar/Sidebar.jsx";
+import Header from "../Header/Header.jsx";
+import Maincontent from "../Maincontent/Maincontent.jsx";
+import AddListModal from '../Addlist/AddListModal.jsx';
+import Signin from "../../../Pages/Signin/Signin.jsx";
 import { Route, Routes, Navigate } from "react-router-dom";
-// import Signin from "../../Pages/Signin/Signin.jsx"
 
 const Allmain = () => {
   const initialData = {
@@ -18,36 +18,37 @@ const Allmain = () => {
   const [data, setData] = useState(initialData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0] || "");
 
-
-  // const [selectedCategory, setSelectedCategory] = useState("vegetables");
-
-
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
   if (!isLoggedIn) {
-    // return <Signin setIsLoggedIn={setIsSignin} />;
+    // return <Signin setIsLoggedIn={setIsLoggedIn} />;
   }
+
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row h-screen bg-gray-50">
       {/* Sidebar */}
       <Sidebar
         categories={categories}
         setCategories={setCategories}
         setSelectedCategory={setSelectedCategory}
+        className="lg:w-1/4 w-full"
       />
 
       {/* Main Section */}
       <div className="flex-1 flex flex-col">
-        <Header handleLogout={handleLogout} />
+        <Header handleLogout={handleLogout} className="lg:py-4 py-2 px-4" />
         <Routes>
           <Route
             path="/"
-            element={<Maincontent selectedCategory={selectedCategory}
-
-              data={data}
-              setData={setData} />}
+            element={
+              <Maincontent
+                selectedCategory={selectedCategory}
+                data={data}
+                setData={setData}
+              />
+            }
           />
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/add-list" element={<AddListModal />} />
@@ -55,6 +56,6 @@ const Allmain = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Allmain
+export default Allmain;
