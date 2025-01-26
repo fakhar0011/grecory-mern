@@ -8,7 +8,7 @@ function Signup() {
         password: "",
         confirmPassword: "",
     });
-    const [error, setError] = useState(null); // For handling errors
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -22,34 +22,40 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Simple validation to check if passwords match
+        // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
             setError("Passwords do not match.");
             return;
         }
 
         try {
-            // Mocking an API call for user registration
-            const response = await fetch("https://your-api-endpoint/register", {
+            const response = await fetch("http://localhost:5000/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     fullName: formData.fullName,
                     email: formData.email,
                     password: formData.password,
-                }),
+                }), // Send only the required fields to the backend
             });
 
             if (!response.ok) {
-                throw new Error("Failed to create account. Please try again.");
+                const errorData = await response.json();
+                setError(errorData.message || "Failed to create account.");
+                return;
             }
 
             const data = await response.json();
-            localStorage.setItem("token", data.token); // Save token for authorization
-            localStorage.setItem("user", JSON.stringify(data.user)); // Save user info (optional)
-            navigate("/dashboard"); // Redirect to dashboard or another page
+
+            // Optional: Store token if returned by the backend
+            if (data.token) {
+                localStorage.setItem("token", data.token);
+            }
+
+            // Redirect to the dashboard
+            navigate("/dashbord");
         } catch (err) {
-            setError(err.message); // Show error message
+            setError("Something went wrong. Please try again later.");
         }
     };
 

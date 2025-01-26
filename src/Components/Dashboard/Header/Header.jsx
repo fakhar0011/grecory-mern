@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Header = ({ handleLogout }) => {
   return (
@@ -14,6 +14,6 @@ const Header = ({ handleLogout }) => {
       </div>
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

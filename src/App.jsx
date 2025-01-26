@@ -9,18 +9,15 @@ import Sectionfive from "./Components/Landing/Sectionfive/Sectionfive.jsx";
 import Footer from "./Components/Landing/Footer/Footer.jsx";
 import Signup from "./Pages/Signup/Signup";
 import Signin from "./Pages/Signin/Signin";
-import Mainapp from "./Components/Dashboard/Allmain/Allmain.jsx"
+import Mainapp from "./Components/Dashboard/Allmain/Allmain.jsx";
 
 const App = () => {
   return (
     <div>
       <Routes>
-
         <Route path="/signin" element={<Signin />} />
 
-
         <Route path="/signup" element={<Signup />} />
-
 
         <Route
           path="/"
@@ -36,8 +33,8 @@ const App = () => {
             </div>
           }
         />
+      <Route path="/dashbord" element={<Mainapp />} />
       </Routes>
-      {/* <Mainapp /> */}
     </div>
   );
 };

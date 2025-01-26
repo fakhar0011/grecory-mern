@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null); // For handling errors
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -20,23 +20,27 @@ const Signin = () => {
         e.preventDefault();
 
         try {
-            // Mocking an API call for authentication
-            const response = await fetch("https://your-api-endpoint/login", {
+            const response = await fetch("http://localhost:5000/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include", // Includes cookies in the request
                 body: JSON.stringify({ email, password }),
             });
 
             if (!response.ok) {
-                throw new Error("Invalid email or password");
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Invalid email or password");
             }
 
             const data = await response.json();
-            localStorage.setItem("token", data.token); // Save token for authorization
-            localStorage.setItem("user", JSON.stringify(data.user)); // Save user info (optional)
-            navigate("/dashboard"); // Redirect to the dashboard or another page
+
+            // Store the token in localStorage for authentication
+            localStorage.setItem("token", data.token);
+
+            // Navigate to the dashboard
+            navigate("/dashbord");
         } catch (err) {
-            setError(err.message); // Show error message
+            setError(err.message);
         }
     };
 
