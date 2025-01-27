@@ -89,7 +89,7 @@ const Sectionthree = () => {
             </div>
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-4 gap-6 px-4">
-                {/* Steps Navigation */}
+
                 <div className="sm:col-span-1">
                     {steps.map((step) => (
                         <div
@@ -108,7 +108,7 @@ const Sectionthree = () => {
                     ))}
                 </div>
 
-                {/* Step Details */}
+
                 <div className="sm:col-span-3 bg-white p-6 rounded-lg shadow-md">
                     {steps.map((step) => (
                         activeStep === step.id && (

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import Sidebar from "../Sidebar/Sidebar.jsx"
-import Header from "../Header/Header.jsx"
-import Maincontent from "../Maincontent/Maincontent.jsx"
-import AddListModal from '../Addlist/AddListModal.jsx'
+import React, { useState } from "react";
+import Sidebar from "../Sidebar/Sidebar.jsx";
+import Header from "../Header/Header.jsx";
+import Maincontent from "../Maincontent/Maincontent.jsx";
+import AddListModal from "../Addlist/AddListModal.jsx";
 import { Route, Routes, Navigate } from "react-router-dom";
-// import Signin from "../../Pages/Signin/Signin.jsx"
+// import Signin from "../../Pages/Signin/Signin.jsx"//
 
 const Allmain = () => {
   const initialData = {
@@ -27,30 +27,26 @@ const Allmain = () => {
   const [data, setData] = useState(initialData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0] || "");
 
-
-  // const [selectedCategory, setSelectedCategory] = useState("vegetables");
-
-
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
   if (!isLoggedIn) {
-    // return <Signin setIsLoggedIn={setIsSignin} />;
+    // return <Signin setIsLoggedIn={setIsLoggedIn} />;
   }
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex flex-col lg:flex-row h-screen bg-gray-50">
       {/* Sidebar */}
       <Sidebar
         categories={categories}
         setCategories={setCategories}
         setSelectedCategory={setSelectedCategory}
-        className="lg:w-1/4 w-full"
+        className="lg:w-1/4 w-full lg:h-auto h-auto"
       />
 
       <div className="flex-1 flex flex-col">
-        <Header handleLogout={handleLogout} className="lg:py-4 py-2 px-4" />
+        <Header handleLogout={handleLogout} className="py-2 px-4 lg:py-4" />
         <Routes>
           <Route
             path="/"

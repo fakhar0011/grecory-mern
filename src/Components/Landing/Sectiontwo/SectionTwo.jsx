@@ -24,7 +24,7 @@ const SectionTwo = () => {
 
   return (
     <div className="bg-green-50 py-10">
-      {/* Section Heading */}
+
       <div className="text-center mb-8 px-4">
         <h2 className="text-2xl font-bold text-gray-800">
           Everything you need to shop smarter
@@ -34,7 +34,7 @@ const SectionTwo = () => {
         </p>
       </div>
 
-      {/* Features Grid */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 max-w-5xl mx-auto">
         {features.map((feature, index) => (
           <div

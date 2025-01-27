@@ -14,7 +14,7 @@ import Mainapp from "./Components/Dashboard/Allmain/Allmain.jsx";
 const App = () => {
   return (
     <div>
-      <Routes>
+      {/* <Routes>
 
         <Route path="/signin" element={<Signin />} />
 
@@ -34,8 +34,8 @@ const App = () => {
             </div>
           }
         />
-      </Routes>
-      {/* <Mainapp /> */}
+      </Routes> */}
+      <Mainapp />
     </div>
   );
 };

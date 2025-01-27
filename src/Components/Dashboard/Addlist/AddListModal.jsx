@@ -18,7 +18,7 @@ const AddListModal = ({ closeModal }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-4 sm:p-6">
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-4">
             <div className="bg-white rounded-lg p-4 sm:p-6 w-full max-w-md shadow-lg relative">
                 <button
                     className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
@@ -31,7 +31,7 @@ const AddListModal = ({ closeModal }) => {
                     <label className="block text-sm font-medium mb-1">List Title</label>
                     <input
                         type="text"
-                        className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                         value={listTitle}
                         onChange={(e) => setListTitle(e.target.value)}
                         placeholder="Enter list title"
@@ -42,14 +42,14 @@ const AddListModal = ({ closeModal }) => {
                     <div className="flex gap-2">
                         <input
                             type="text"
-                            className="flex-1 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
+                            className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={itemInput}
                             onChange={(e) => setItemInput(e.target.value)}
                             placeholder="Item name"
                         />
                         <button
                             onClick={addItem}
-                            className="bg-green-500 text-white px-3 rounded hover:bg-green-600"
+                            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                         >
                             +
                         </button>
@@ -69,7 +69,7 @@ const AddListModal = ({ closeModal }) => {
                 </div>
                 <button
                     onClick={createList}
-                    className={`w-full px-4 py-2 rounded ${listTitle && items.length > 0
+                    className={`w-full px-4 py-3 rounded text-sm ${listTitle && items.length > 0
                         ? "bg-green-500 text-white hover:bg-green-600"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                         }`}
