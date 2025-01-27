@@ -6,11 +6,11 @@ const Navbar = () => {
         <nav className="flex items-center justify-between bg-white p-2 shadow-md">
             {/* Left Section - Logo */}
             <div className="flex items-center justify-start">
-                <div className="flex items-center text-xl font-bold ">
-                <div className="text-green-600 text-2xl">
+                <div className="flex items-center text-xl font-bold gap-2 ">
+                <div className="text-green-600 text-2xl ml-8">
                         <i className="fas fa-shopping-basket"></i>
                     </div>
-                    <h6 className="text-sm text-black-600">GrocerySave</h6>
+                    <h6 className="text-md font-bold text-black-600">GrocerySave</h6>
                 </div>
             </div>
 
