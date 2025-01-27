@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 function Signup() {
     const [formData, setFormData] = useState({
         fullName: "",
@@ -10,7 +9,6 @@ function Signup() {
     });
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -18,16 +16,13 @@ function Signup() {
             [name]: value,
         }));
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
             setError("Passwords do not match.");
             return;
         }
-
         try {
             const response = await fetch("http://localhost:5000/register", {
                 method: "POST",
@@ -36,29 +31,22 @@ function Signup() {
                     fullName: formData.fullName,
                     email: formData.email,
                     password: formData.password,
-                }), // Send only the required fields to the backend
+                }),
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 setError(errorData.message || "Failed to create account.");
                 return;
             }
-
             const data = await response.json();
-
-            // Optional: Store token if returned by the backend
             if (data.token) {
                 localStorage.setItem("token", data.token);
             }
-
-            // Redirect to the dashboard
             navigate("/dashbord");
         } catch (err) {
             setError("Something went wrong. Please try again later.");
         }
     };
-
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-green-100 to-green-200">
             <div className="bg-white rounded-lg shadow-lg p-8 w-96">
@@ -160,5 +148,4 @@ function Signup() {
         </div>
     );
 }
-
 export default Signup;

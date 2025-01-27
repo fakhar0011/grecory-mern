@@ -4,7 +4,7 @@ import AddListModal from "../Addlist/AddListModal";
 const Maincontent = ({ selectedCategory, data, setData }) => {
   const [isAddingItem, setIsAddingItem] = useState(false);
   const [newItem, setNewItem] = useState("");
-  const [selectedItem, setSelectedItem] = useState(null); // Track the selected radio button
+  const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -36,13 +36,13 @@ const Maincontent = ({ selectedCategory, data, setData }) => {
       ),
     }));
     if (selectedItem === id) {
-      setSelectedItem(null); // Reset selection if the deleted item is selected
+      setSelectedItem(null);
     }
   };
 
   return (
     <main className="p-4 flex-1">
-      {/* Add List Button */}
+
       <div className="p-4 flex justify-between items-center">
         <button
           onClick={openModal}
@@ -53,7 +53,7 @@ const Maincontent = ({ selectedCategory, data, setData }) => {
         {isModalOpen && <AddListModal closeModal={closeModal} />}
       </div>
 
-      {/* Add Item Section */}
+
       {isAddingItem && (
         <div className="mb-4 bg-gray-100 p-4 rounded-lg">
           <input
@@ -72,7 +72,7 @@ const Maincontent = ({ selectedCategory, data, setData }) => {
         </div>
       )}
 
-      {/* Items List */}
+
       <div className="space-y-6">
         {data[selectedCategory]?.map((item) => (
           <div
@@ -80,7 +80,7 @@ const Maincontent = ({ selectedCategory, data, setData }) => {
             className="bg-white shadow-md rounded-lg p-4 border border-gray-200"
           >
             <div className="flex items-center justify-between">
-              {/* Item Name with Radio Button */}
+
               <div className="flex items-center space-x-2">
                 <input
                   type="radio"
@@ -101,7 +101,7 @@ const Maincontent = ({ selectedCategory, data, setData }) => {
                   {item.name}
                 </label>
               </div>
-              {/* Remove Button */}
+
               <button
                 onClick={() => removeItem(item.id)}
                 className="text-red-500 bg-red-100 hover:bg-red-200 p-2 rounded-full"

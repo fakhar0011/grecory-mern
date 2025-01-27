@@ -3,8 +3,7 @@ import Sidebar from "../Sidebar/Sidebar.jsx";
 import Header from "../Header/Header.jsx";
 import Maincontent from "../Maincontent/Maincontent.jsx";
 import AddListModal from "../Addlist/AddListModal.jsx";
-import { Route, Routes, Navigate } from "react-router-dom";
-// import Signin from "../../Pages/Signin/Signin.jsx"//
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 
 const Allmain = () => {
   const initialData = {
@@ -26,13 +25,40 @@ const Allmain = () => {
   const [categories, setCategories] = useState(Object.keys(initialData));
   const [data, setData] = useState(initialData);
   const [selectedCategory, setSelectedCategory] = useState(categories[0] || "");
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response.ok) {
+        setIsLoggedIn(false);
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        console.error(
+          "Failed to log out:",
+          errorData.message || "Unknown error"
+        );
+        alert(errorData.message || "Logout failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("An error occurred during logout:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
   };
 
+  React.useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/signin");
+    }
+  }, [isLoggedIn, navigate]);
+
   if (!isLoggedIn) {
-    // return <Signin setIsLoggedIn={setIsLoggedIn} />;
+    return <Navigate to="/" replace />;
   }
 
   return (
@@ -42,11 +68,12 @@ const Allmain = () => {
         categories={categories}
         setCategories={setCategories}
         setSelectedCategory={setSelectedCategory}
-        className="lg:w-1/4 w-full lg:h-auto h-auto"
+        className="lg:w-1/4 w-full sm:w-2/3 md:w-1/2"
       />
 
+      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        <Header handleLogout={handleLogout} className="py-2 px-4 lg:py-4" />
+        <Header handleLogout={handleLogout} className="py-2 px-4" />
         <Routes>
           <Route
             path="/"

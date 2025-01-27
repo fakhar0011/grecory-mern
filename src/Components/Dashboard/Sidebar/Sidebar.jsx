@@ -19,10 +19,10 @@ const Sidebar = ({ categories, setCategories, setSelectedCategory }) => {
 
   return (
     <div className="w-full sm:w-64 bg-white shadow-lg p-4 flex flex-col">
-      {/* Categories Header */}
+
       <h3 className="text-lg font-bold mb-4 text-center sm:text-left">Categories</h3>
 
-      {/* Add Category Section */}
+
       {isAddingCategory && (
         <div className="mb-4 bg-gray-100 p-2 rounded-lg">
           <input
@@ -41,7 +41,7 @@ const Sidebar = ({ categories, setCategories, setSelectedCategory }) => {
         </div>
       )}
 
-      {/* Toggle Add Category Button */}
+
       <button
         onClick={() => setIsAddingCategory(!isAddingCategory)}
         className="bg-green-500 text-white py-2 px-4 rounded-lg mb-4 text-sm hover:bg-green-600 w-full"
@@ -49,7 +49,7 @@ const Sidebar = ({ categories, setCategories, setSelectedCategory }) => {
         {isAddingCategory ? "Cancel" : "Add Category"}
       </button>
 
-      {/* Categories List */}
+
       <ul className="space-y-2">
         {categories.map((category, index) => (
           <li

@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./Components/Landing/Navbar/Navbar";
 import MainSection from "./Components/Landing/Main_Section/MainSection.jsx";
@@ -10,16 +9,12 @@ import Footer from "./Components/Landing/Footer/Footer.jsx";
 import Signup from "./Pages/Signup/Signup";
 import Signin from "./Pages/Signin/Signin";
 import Mainapp from "./Components/Dashboard/Allmain/Allmain.jsx";
-
 const App = () => {
   return (
     <div>
-      {/* <Routes>
-
+      <Routes>
         <Route path="/signin" element={<Signin />} />
-
         <Route path="/signup" element={<Signup />} />
-
         <Route
           path="/"
           element={
@@ -34,10 +29,9 @@ const App = () => {
             </div>
           }
         />
-      </Routes> */}
-      <Mainapp />
+        <Route path="/dashbord" element={<Mainapp />} />
+      </Routes>
     </div>
   );
 };
-
 export default App;

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         if (name === "email") {
@@ -15,35 +13,26 @@ const Signin = () => {
             setPassword(value);
         }
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await fetch("http://localhost:5000/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                credentials: "include", // Includes cookies in the request
+                credentials: "include",
                 body: JSON.stringify({ email, password }),
             });
-
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || "Invalid email or password");
             }
-
             const data = await response.json();
-
-            // Store the token in localStorage for authentication
             localStorage.setItem("token", data.token);
-
-            // Navigate to the dashboard
             navigate("/dashbord");
         } catch (err) {
             setError(err.message);
         }
     };
-
     return (
         <div className="flex items-center justify-center min-h-screen bg-green-50">
             <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-lg">
@@ -103,5 +92,4 @@ const Signin = () => {
         </div>
     );
 };
-
 export default Signin;
